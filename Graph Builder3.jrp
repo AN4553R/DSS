@@ -1,0 +1,64 @@
+﻿New Table( "Problem3",
+	Add Rows( 40 ),
+	New Script(
+		"Source",
+		Open(
+			"F:\Books\PhD - VT-MENA Program\Courses\STAT5615- Statistics In Research I\Homework1\Problem3.csv",
+			columns(
+				Column( "Year", Numeric, Continuous, Format( "Best", 10 ) ),
+				Column( "Score", Numeric, Continuous, Format( "Best", 10 ) ),
+				Column( "Type", Numeric, Continuous, Format( "Best", 10 ) )
+			),
+			Import Settings(
+				End Of Line( CRLF, CR, LF ),
+				End Of Field( Comma, CSV( 1 ) ),
+				Strip Quotes( 0 ),
+				Use Apostrophe as Quotation Mark( 0 ),
+				Scan Whole File( 1 ),
+				Treat empty columns as numeric( 0 ),
+				CompressNumericColumns( 0 ),
+				CompressCharacterColumns( 0 ),
+				CompressAllowListCheck( 0 ),
+				Labels( 1 ),
+				Column Names Start( 1 ),
+				Data Starts( 2 ),
+				Lines To Read( "All" ),
+				Year Rule( "20xx" )
+			)
+		)
+	),
+	New Column( "Year",
+		Numeric,
+		"Continuous",
+		Format( "Best", 10 ),
+		Set Values(
+			[1967, 1967, 1967, 1967, 1970, 1970, 1970, 1970, 1975, 1975, 1975, 1975,
+			1980, 1980, 1980, 1980, 1985, 1985, 1985, 1985, 1990, 1990, 1990, 1990,
+			1993, 1993, 1993, 1993, 1994, 1994, 1994, 1994, 1995, 1995, 1995, 1995,
+			1996, 1996, 1996, 1996]
+		)
+	),
+	New Column( "Score",
+		Numeric,
+		"Continuous",
+		Format( "Best", 10 ),
+		Set Values(
+			[540, 545, 535, 495, 536, 538, 531, 493, 515, 509, 518, 479, 506, 498,
+			515, 473, 514, 503, 522, 480, 505, 496, 521, 483, 504, 497, 524, 484,
+			501, 497, 523, 487, 505, 502, 525, 490, 507, 503, 527, 492]
+		)
+	),
+	New Column( "Type",
+		Numeric,
+		"Continuous",
+		Format( "Best", 10 ),
+		Set Values(
+			[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4,
+			1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]
+		)
+	)
+) << Run Formulas;
+Graph Builder(
+	Variables( X( :Year ), Y( :Score ), Overlay( :Type ) ),
+	Elements( Smoother( X, Y, Legend( 23 ) ) )
+);
